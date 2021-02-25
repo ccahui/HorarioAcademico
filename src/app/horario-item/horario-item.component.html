@@ -3,17 +3,13 @@
     <thead>
       <tr>
         <th>Hora</th>
-        <th>Lunes</th>
-        <th>Martes</th>
-        <th>Miercoles</th>
-        <th>Jueves</th>
-        <th>Viernes</th>
+       <th *ngFor="let dia of diasAcademicos">{{dia}}</th>
       </tr>
     </thead>
     <tbody>
   
       <tr class="text-uppercase" *ngFor="let row of tableroHorario; let i = index">
-        <td style="font-size: 13px;" class="text-lowercase">{{this.horas[i].inicio}} - {{this.horas[i].fin}}</td>
+        <td style="font-size: 13px;" class="text-lowercase">{{this.horasAcademicas[i].inicio}} - {{this.horasAcademicas[i].fin}}</td>
         
         <td  style="width: 17.5%" *ngFor="let column of row; let j = index">
           <span class="mr-1 px-1 py-1" [ngClass]="{'selectedItem' : cursoGrupo.estado,'overSelected' : cursoGrupo.id == hoverElement}" (mouseover)="hoverElement = cursoGrupo.id"
@@ -27,4 +23,12 @@
     </tbody>
   </table>
   
+    <ul class="list-unstyled">
+      <li *ngFor="let curso of horarioItem.cursos">{{curso.abreviatura}}={{curso.cursoNombre}}. 
+
+        <span *ngFor="let cursoGrupo of curso.grupos"> ({{cursoGrupo.grupo}})</span>
+      </li>
+    
+    </ul>
+
   

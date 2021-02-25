@@ -11,13 +11,16 @@ export class HorarioItemComponent implements OnInit {
   @Input() horarioItem: any; 
   tableroHorario:any;
   hoverElement = "";
-  horas : any[] = [];
-  
+
+  horasAcademicas : any[] = [];
+  diasAcademicos : any[] = [];
   constructor(public service: StateService) { }
 
   ngOnInit(): void {
-    this.horas = this.service.horas;
+    this.horasAcademicas = this.service.horasAcademicas;
+    this.diasAcademicos = this.service.diasAcademicos;
     this.tableroHorario = this.service.tablero(this.horarioItem); 
+    console.log(this.horarioItem);
   } 
   
   save(cursoGrupo:any){

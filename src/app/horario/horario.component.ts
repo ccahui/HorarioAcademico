@@ -1,7 +1,7 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { StateService } from '../state.service';
 import * as moment from 'moment';
-import { Util } from '../util.';
+import { Util } from '../util';
 
 @Component({
   selector: 'app-horario',

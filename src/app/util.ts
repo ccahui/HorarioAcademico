@@ -3,6 +3,8 @@ import { ThrowStmt } from '@angular/compiler';
 import * as moment from 'moment';
 import { DATA } from './data';
 
+import { Injectable } from '@angular/core';
+@Injectable({providedIn:'root'})
 export class Util {
   private horas : any[];
   private diasAbreviados : any[]
@@ -13,7 +15,7 @@ export class Util {
     this.diasAbreviados = this.initDiasAcademicosAbreviados();
     this.dias = this.initDiasAcademicos();
   }
-  getDias(){
+  getDiasAcademicos(){
     return this.dias
   }
   getHorasAcademicas(){
@@ -31,9 +33,9 @@ export class Util {
           selected: false,
           abreviatura: curso.substr(0, 3),
           grupos: [
-            { grupo: 'A', ...this.randomHoraDia(), horas: [this.randomHoraDia(), this.randomHoraDia()], abreviatura: curso.substr(0, 3) + "-" + "A", id: curso + "-" + "A" },
-            { grupo: 'B', ...this.randomHoraDia(), horas: [this.randomHoraDia(), this.randomHoraDia()], abreviatura: curso.substr(0, 3) + "-" + "B", id: curso + "-" + "B" }
-          ]
+            { grupo: 'A',  horas: [this.randomHoraDia(), this.randomHoraDia()], abreviatura: curso.substr(0, 3) + "-" + "A"  },
+            { grupo: 'B', horas: [this.randomHoraDia(), this.randomHoraDia()], abreviatura: curso.substr(0, 3) + "-" + "B" }
+          ],
         };
       });
       return {
@@ -130,7 +132,7 @@ export class Util {
     return this.horas[Math.floor(Math.random() * (this.horas.length - 2))];
   }
   private diaAcademicAleatorio(){
-    return this.dias[Math.floor(Math.random() * (this.dias.length))];
+    return this.diasAbreviados[Math.floor(Math.random() * (this.dias.length))];
   }
 
   private initArray() {
@@ -149,7 +151,7 @@ export class Util {
  
 
   private mapear(grupoHora: any, grupoCurso: any, arrayBidimensional: any) {
-    let j = this.dias.findIndex((hora: any) => hora == grupoHora.dia);
+    let j = this.diasAbreviados.findIndex((hora: any) => hora == grupoHora.dia);
     let arrayI = this.mapearHora(grupoHora);
     arrayI.forEach(i => {
       arrayBidimensional[i][j].push(grupoCurso);
