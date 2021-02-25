@@ -1,0 +1,12 @@
+.selected {
+    background-color:#ffdf00;    
+}
+.selectedItem{
+    font-weight: 500;
+    text-decoration: underline ;
+    background-color:#ffdf00;   
+}
+
+.overSelected {
+    background-color:chartreuse;
+}

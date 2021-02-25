@@ -1,0 +1,13 @@
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="checkbox" [id]="object.anio" value="option1" (change)="selectAll()" [checked]="selectedAll" >
+    <label class="form-check-label font-weight-bold" [for]="object.anio" >{{object.anio}}</label>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let n of names">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" [id]="n.cursoNombre" value="option1" [(ngModel)]="n.selected" (change)="checkIfAllSelected()">
+        <label class="form-check-label" [for]="n.cursoNombre" ><small>{{n.cursoNombre }}</small></label>
+      </div>
+    </div>
+  </div>

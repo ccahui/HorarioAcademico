@@ -1,0 +1,30 @@
+<h6 class="text-uppercase">{{horarioItem.anio}}</h6>
+<table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>Hora</th>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miercoles</th>
+        <th>Jueves</th>
+        <th>Viernes</th>
+      </tr>
+    </thead>
+    <tbody>
+  
+      <tr class="text-uppercase" *ngFor="let row of tableroHorario; let i = index">
+        <td style="font-size: 13px;" class="text-lowercase">{{this.horas[i].inicio}} - {{this.horas[i].fin}}</td>
+        
+        <td  style="width: 17.5%" *ngFor="let column of row; let j = index">
+          <span class="mr-1 px-1 py-1" [ngClass]="{'selectedItem' : cursoGrupo.estado,'overSelected' : cursoGrupo.id == hoverElement}" (mouseover)="hoverElement = cursoGrupo.id"
+          (mouseout)="hoverElement = ''"
+          (click)="save(cursoGrupo)"
+          *ngFor="let cursoGrupo of column" 
+         >{{cursoGrupo.abreviatura}}</span>
+        </td>
+      </tr>
+  
+    </tbody>
+  </table>
+  
+  
