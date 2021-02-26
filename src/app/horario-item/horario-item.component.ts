@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AnioHorario, Grupo, Hora } from '../models/modelos';
 import { StateService } from '../state.service';
 
 @Component({
@@ -8,51 +9,51 @@ import { StateService } from '../state.service';
 })
 export class HorarioItemComponent implements OnInit {
 
-  @Input() horarioItem: any; 
-  tableroHorario:any;
+  @Input() horarioItem!: AnioHorario;
+  tableroHorario!: Grupo[][][];
   hoverElement = "";
 
-  horasAcademicas : any[] = [];
-  diasAcademicos : any[] = [];
-  constructor(public service: StateService) { }
+  horasAcademicas: Hora[] = [];
+  diasAcademicos: string[] = [];
+  constructor(public service: StateService) {
+  }
 
   ngOnInit(): void {
     this.horasAcademicas = this.service.horasAcademicas;
     this.diasAcademicos = this.service.diasAcademicos;
-    this.tableroHorario = this.service.tablero(this.horarioItem); 
-    console.log(this.horarioItem);
-  } 
-  
-  save(cursoGrupo:any){
-    
-    console.log(cursoGrupo.parent);
-    let cursoGrupos = cursoGrupo.isLab ? cursoGrupo.parent.grupos2 : cursoGrupo.parent.grupos;
-    
-    cursoGrupos.forEach((element : any)=> {
-      if(element == cursoGrupo){
-        cursoGrupo.estado = !cursoGrupo.estado;
-      }  else {
-        element.estado = false;
+    this.tableroHorario = this.service.tablero(this.horarioItem);
+  }
+
+  save(cursoGrupo: Grupo) {
+
+    let refParent = cursoGrupo.refParent;
+    let cursoGrupos = cursoGrupo.isLab ? refParent.gruposLaboratorio : refParent.gruposTeoria;
+
+    cursoGrupos.forEach((element) => {
+      if (element == cursoGrupo) {
+        element.seleccionado = !element.seleccionado;
+      } else {
+        element.seleccionado = false;
       }
     });
   }
 
-  printGrupos(cursoGrupos:any){
+  printGrupos(cursoGrupos: Grupo[]) {
     let cadena = "";
-    if(cursoGrupos.length > 0){
+    if (cursoGrupos.length > 0) {
       cadena += "(";
-      for(let i = 0; i < cursoGrupos.length; i++){
-        cadena+=cursoGrupos[i].grupo;
-        if(i < cursoGrupos.length-1){
-          cadena+=", ";
+      for (let i = 0; i < cursoGrupos.length; i++) {
+        cadena += cursoGrupos[i].nombre;
+        if (i < cursoGrupos.length - 1) {
+          cadena += ", ";
         }
       }
-      cadena+= ")"
+      cadena += ")"
     }
     return cadena;
   }
 
-  
+
 
 
 }

@@ -1,87 +1,87 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { DATA } from './data';
-import * as moment from 'moment';
+import { BehaviorSubject } from 'rxjs';
 import { Util } from './util';
+import { AnioHorario, Curso, Grupo, Hora } from './models/modelos';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class StateService {
-  horarios: any[] = [];
-  dataFiltrada$: BehaviorSubject<any[]>;
-  
-  horasAcademicas : any[] = []
-  diasAcademicos: any [] = [];
-  
-  constructor(private util:Util) {
+  horarios: AnioHorario[] = [];
+  dataFiltrada$: BehaviorSubject<AnioHorario[]>;
+
+  horasAcademicas: Hora[] = []
+  diasAcademicos: string[] = [];
+
+  constructor(private util: Util) {
     this.horasAcademicas = this.util.getHorasAcademicas();
     this.diasAcademicos = this.util.getDiasAcademicos();
-    
-    this.initCursos();
-    
+
+    this.loadHorarios();
+
     this.dataFiltrada$ = new BehaviorSubject(this.horarios);
   }
 
-  saveLocalStorage(){
-    let idsCursoGrupo : any[]= []
+  saveLocalStorage() {
+   let idsCursoGrupo: string[] = []
     this.horarios.forEach((anioCursos) => {
-      anioCursos.cursos.forEach((curso:any) => {
-        curso.grupos.forEach((cursoGrupo: any) => {
-           if(cursoGrupo.estado){
-             idsCursoGrupo.push(cursoGrupo.id);
-           } 
-        });
-        curso.grupos2.forEach((cursoGrupo: any) => {
-          if(cursoGrupo.estado){
+      anioCursos.cursos.forEach((curso) => {
+        curso.gruposTeoria.forEach((cursoGrupo) => {
+          if (cursoGrupo.seleccionado) {
             idsCursoGrupo.push(cursoGrupo.id);
-          } 
-       });
+          }
+        });
+        curso.gruposLaboratorio.forEach((cursoGrupo) => {
+          if (cursoGrupo.seleccionado) {
+            idsCursoGrupo.push(cursoGrupo.id);
+          }
+        });
       });
     })
-    localStorage.setItem('miHorario',JSON.stringify(idsCursoGrupo));
+    localStorage.setItem('miHorario', JSON.stringify(idsCursoGrupo));
+  
   }
 
-
-  initCursos(){
-    let data = this.util.fakerHorariosData();
-
+  loadHorarios() {
+    let data = this.util.fakerHorariosDataFormat();
+    this.horarios = this.util.toAnioHorario(data);
+    this.sincronizarMiHorarioConHorarioAlmacenado();
+   
+  }
+  private sincronizarMiHorarioConHorarioAlmacenado(){
     let miHorario:any = localStorage.getItem("miHorario");
-    
     miHorario = JSON.parse(miHorario);
-    
-    data.forEach((anioCursos) => {
 
+    if(miHorario != null){
+      this.sincronizandoHorario(miHorario);
+    }
+  }
+
+  private sincronizandoHorario(miHorario:any){
+    this.horarios.forEach((anioCursos) => {
       let cursos = anioCursos.cursos;
-      cursos.forEach((curso:any) => {
-          curso.grupos.forEach((cursoGrupo: any) => {
-            cursoGrupo.parent = curso;
-            cursoGrupo.id = curso.cursoNombre + "-" + cursoGrupo.grupo;
-            cursoGrupo.abreviatura = curso.abreviatura+ "-" + cursoGrupo.grupo;
-            if(miHorario.some((item:any) => item == cursoGrupo.id)){
-              cursoGrupo.estado = true;
-          }}
-          );
-          curso.grupos2.forEach((cursoGrupo: any) => {
-            cursoGrupo.parent = curso;
-            cursoGrupo.id = curso.cursoNombre + "-(L)" + cursoGrupo.grupo;
-            cursoGrupo.abreviatura = curso.abreviatura+ "-" + cursoGrupo.grupo+"(L)";
-            cursoGrupo.isLab = true;
-            if(miHorario.some((item:any) => item == cursoGrupo.id)){
-              cursoGrupo.estado = true;
-          }}
-          );
+      cursos.forEach((curso) => {
+        curso.gruposTeoria.forEach(cursoGrupo => {
+          if (miHorario.some((item: string) => item == cursoGrupo.id)) {
+            cursoGrupo.seleccionado = true;
+          }
+        }
+        );
+        curso.gruposLaboratorio.forEach(cursoGrupo => {
+          if (miHorario.some((item: string) => item == cursoGrupo.id)) {
+            cursoGrupo.seleccionado = true;
+          }
+        }
+        );
       });
     });
-    this.horarios = data;
-    
   }
-  
-  filtrar() {
 
-    let dataFiltrada: any[] = [];
+  filtrar() {
+    let dataFiltrada: AnioHorario[] = [];
     this.horarios.forEach(anioCursos => {
-      let cursos = anioCursos.cursos.filter((curso: any) => curso.selected == true);
+      let cursos = anioCursos.cursos.filter((curso) => curso.filtrado == true);
       if (cursos.length > 0) {
         dataFiltrada.push({
           ...anioCursos,
@@ -89,16 +89,14 @@ export class StateService {
         });
       }
     });
-    if(dataFiltrada.length == 0) {
+    if (dataFiltrada.length == 0) {
       dataFiltrada = this.horarios;
     }
-      this.dataFiltrada$.next(dataFiltrada);
-    
-    
+    this.dataFiltrada$.next(dataFiltrada);
   }
-  tablero(anioCursos: any) {
+  tablero(anioCursos: AnioHorario) {
     return this.util.tableroHorario(anioCursos);
   }
- 
+
 }
 

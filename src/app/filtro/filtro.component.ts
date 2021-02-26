@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DATA } from '../data';
+import { AnioHorario } from '../models/modelos';
 import { StateService } from '../state.service';
 @Component({
   selector: 'app-filtro',
@@ -8,7 +8,7 @@ import { StateService } from '../state.service';
 })
 export class FiltroComponent implements OnInit {
 
-  horarios: any[] = [];
+  horarios: AnioHorario[] = [];
   constructor(private service: StateService){
   }
   ngOnInit(){

@@ -1,64 +1,68 @@
 
 import { ThrowStmt } from '@angular/compiler';
 import * as moment from 'moment';
-import { DATA } from './data';
+import * as DATA  from './data.json';
 
 import { Injectable } from '@angular/core';
-@Injectable({providedIn:'root'})
+import { AnioHorario, Curso, Grupo, Hora, HoraDia } from './models/modelos';
+import { InputAnioHorario, InputCurso, InputGrupo } from './models/inputModels';
+@Injectable({ providedIn: 'root' })
 export class Util {
-  private horas : any[];
-  private diasAbreviados : any[]
-  private dias : any [];
-  
-  constructor(){
+  private horas: Hora[];
+  private diasAbreviados: string[]
+  private dias: string[];
+
+  constructor() {
     this.horas = this.initHorasAcademicas();
     this.diasAbreviados = this.initDiasAcademicosAbreviados();
     this.dias = this.initDiasAcademicos();
   }
-  getDiasAcademicos(){
+  getDiasAcademicos() {
     return this.dias
   }
-  getHorasAcademicas(){
+  getHorasAcademicas() {
     return this.horas;
   }
-  getDiasAbreviados(){
+  getDiasAbreviados() {
     return this.diasAbreviados;
   }
-  fakerHorariosData() {
-    let horarios = DATA.map((anioCursos) => {
-    
-      let cursos = anioCursos.cursos.map((curso: any) => {
+  fakerHorariosDataFormat() {
+
+    let data = (DATA as any).default;
+    let horarios: InputAnioHorario[] = data.map((anioCursos: any) => {
+
+      let cursos: InputCurso[] = anioCursos.cursos.map((curso: string) => {
         return {
-          cursoNombre: curso,
-          selected: false,
+          nombre: curso,
           abreviatura: curso.substr(0, 3),
-          grupos: [
-            { grupo: 'A',  horas: [this.randomHoraDia(), this.randomHoraDia()]  },
-            { grupo: 'B', horas: [this.randomHoraDia(), this.randomHoraDia()] }
+          gruposTeoria: [
+            { nombre: 'A', horas: [this.randomHoraDia(), this.randomHoraDia()] },
+            { nombre: 'B', horas: [this.randomHoraDia(), this.randomHoraDia()] }
           ],
-          grupos2: [
-          { grupo: 'A',  horas: [this.randomHoraDia()]},
-          { grupo: 'B',  horas: [this.randomHoraDia()]},
+          gruposLaboratorio: [
+            { nombre: 'A', horas: [this.randomHoraDia()] },
+            { nombre: 'B', horas: [this.randomHoraDia()] },
           ]
         };
       });
       return {
-        anio: anioCursos.nombre,
+        nombre: anioCursos.nombre,
         cursos: cursos
       }
     });
     return horarios;
   }
-  tableroHorario(anioCursos: any) {
+
+  tableroHorario(anioCursos: AnioHorario) {
     let arrayBidimensional = this.initArray();
-    anioCursos.cursos.map((curso: any) => {
-      curso.grupos.map((grupoCurso: any) => {
-        grupoCurso.horas.map((grupoHora: any) => {
+    anioCursos.cursos.map(curso=> {
+      curso.gruposTeoria.map(grupoCurso => {
+        grupoCurso.horas.map(grupoHora => {
           this.mapear(grupoHora, grupoCurso, arrayBidimensional);
         });
       });
-      curso.grupos2.map((grupoCurso: any) => {
-        grupoCurso.horas.map((grupoHora: any) => {
+      curso.gruposLaboratorio.map(grupoCurso => {
+        grupoCurso.horas.map(grupoHora => {
           this.mapear(grupoHora, grupoCurso, arrayBidimensional);
         });
       })
@@ -67,7 +71,7 @@ export class Util {
   }
 
   private initHorasAcademicas() {
-    let horas: any[] = [];
+    let horas: Hora[] = [];
     this.horasAcademicas7am_1y20pm(horas);
     this.horasAcademicas2pm_8y20pm(horas);
 
@@ -84,7 +88,7 @@ export class Util {
     return dias;
   }
 
-  private horasAcademicas7am_1y20pm(horas: any[]) {
+  private horasAcademicas7am_1y20pm(horas: Hora[]) {
     let format = "HH:mm a";
     let hora = (moment("7:00 am", "HH:mm a"));
 
@@ -101,7 +105,7 @@ export class Util {
     }
   }
 
-  private horasAcademicas2pm_8y20pm(horas: any[]) {
+  private horasAcademicas2pm_8y20pm(horas: Hora[]) {
     let format = "HH:mm a";
     let hora = (moment("14:00 pm", "HH:mm a"));
 
@@ -121,7 +125,7 @@ export class Util {
   private randomHoraDia() {
     let horaObj = this.horaAcademicaAleatorio();
     let dia = this.diaAcademicAleatorio()
-    
+
     let inicio = horaObj.inicio;
     if (horaObj.inicio == "12:30 pm") {
       inicio = "7:00 am";
@@ -131,21 +135,22 @@ export class Util {
     let hora = (moment(inicio, format));
     hora.add('100', 'minutes');
     let fin = hora.format(format);
-
-    return {
+    
+    let randomHoraDia: HoraDia = {
       inicio: inicio, fin: fin, dia: dia
     }
+    return randomHoraDia;
   }
 
-  private horaAcademicaAleatorio(){
+  private horaAcademicaAleatorio() {
     return this.horas[Math.floor(Math.random() * (this.horas.length - 2))];
   }
-  private diaAcademicAleatorio(){
+  private diaAcademicAleatorio() {
     return this.diasAbreviados[Math.floor(Math.random() * (this.dias.length))];
   }
 
   private initArray() {
-    let arrayBidimensional = new Array(14);
+    let arrayBidimensional: Grupo[][][] = new Array(14);
     for (let i = 0; i < 14; i++) {
       arrayBidimensional[i] = new Array(5);
     }
@@ -157,24 +162,24 @@ export class Util {
     return arrayBidimensional;
   }
 
- 
 
-  private mapear(grupoHora: any, grupoCurso: any, arrayBidimensional: any) {
-    let j = this.diasAbreviados.findIndex((hora: any) => hora == grupoHora.dia);
+
+  private mapear(grupoHora: HoraDia, grupoCurso: Grupo, arrayBidimensional: Grupo[][][]) {
+    let j = this.diasAbreviados.findIndex(hora => hora == grupoHora.dia);
     let arrayI = this.mapearHora(grupoHora);
     arrayI.forEach(i => {
       arrayBidimensional[i][j].push(grupoCurso);
     });
   }
 
-  private mapearHora(grupoHora: any) {
+  private mapearHora(grupoHora: HoraDia) {
 
     let inicio = grupoHora.inicio;
     let fin = grupoHora.fin;
 
     let arrayI = [];
 
-    let firstI = this.horas.findIndex((horaObject: any) => {
+    let firstI = this.horas.findIndex(horaObject => {
       return this.between(inicio, fin, horaObject.inicio);
     });
     arrayI.push(firstI);
@@ -187,7 +192,7 @@ export class Util {
     return arrayI;
   }
 
-  private between(inicio: any, fin: any, hora: any) {
+  private between(inicio:string, fin: string, hora: string) {
     let format = 'HH:mm a';
     let time = moment(hora, format);
     let beforeTime = moment(inicio, format);
@@ -197,6 +202,62 @@ export class Util {
     return rpta;
   }
 
+  public toAnioHorario(data: InputAnioHorario[]) : AnioHorario[] {
+    let anioHorarios: AnioHorario[] = data.map(inputAnioCurso => {
+      let cursos: Curso[] = this.toCurso(inputAnioCurso.cursos);
+      return {
+        nombre: inputAnioCurso.nombre,
+        cursos: cursos,
+      }
+    });
+    return anioHorarios;
+  }
+
+  private toCurso(inputsCursos: InputCurso[]) {
+    let cursos: Curso[] = inputsCursos.map(inputCurso => {
+      let curso: Curso = {
+        nombre: inputCurso.nombre,
+        abreviatura: inputCurso.abreviatura,
+        gruposTeoria: [],
+        gruposLaboratorio: [],
+      }
+      
+      let gruposTeoria: Grupo[] = this.toGrupoTeoria(inputCurso.gruposTeoria, curso);
+      let gruposLaboratorio: Grupo[] = this.toGrupoLaboratorio(inputCurso.gruposLaboratorio, curso);
+
+      curso.gruposTeoria = gruposTeoria;
+      curso.gruposLaboratorio = gruposLaboratorio;
+
+      return curso;
+    });
+    return cursos;
+  }
+
+  private toGrupoTeoria(inputGrupos: InputGrupo[], curso: Curso) {
+    let gruposTeoria: Grupo[] = inputGrupos.map(grupo => {
+      return {
+        id: curso.nombre + "-(T)" + grupo.nombre,
+        nombre: grupo.nombre,
+        abreviatura: curso.abreviatura + "-" + grupo.nombre,
+        horas: [...grupo.horas],
+        refParent: curso,
+      }
+    });
+    return gruposTeoria;
+  }
+
+  private toGrupoLaboratorio(inputGrupos: InputGrupo[], curso: Curso) {
+    let gruposLaboratorio: Grupo[] = inputGrupos.map(grupo => {
+      return {
+        id: curso.nombre + "-(L)" + grupo.nombre,
+        nombre: grupo.nombre,
+        abreviatura: curso.abreviatura + "-" + grupo.nombre + "(L)",
+        horas: [...grupo.horas],
+        refParent: curso,
+        isLab: true,
+      }
+    });
+    return gruposLaboratorio;
+  }
 
 }
-

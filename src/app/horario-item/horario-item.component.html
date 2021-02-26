@@ -1,5 +1,6 @@
-<h6 class="text-uppercase">{{horarioItem.anio}}</h6>
-<table class="table table-bordered table-sm">
+<h6 class="text-uppercase">{{horarioItem.nombre}}</h6>
+  <div class="table-responsive">
+ <table class="table table-bordered table-sm" style="min-width: 780px;">
   <thead>
     <tr>
       <th>Hora</th>
@@ -14,18 +15,18 @@
 
       <td style="width: 17.5%" *ngFor="let column of row; let j = index">
         <span class="mr-1 px-1 py-1"
-          [ngClass]="{'selectedItem' : cursoGrupo.estado,'overSelected' : cursoGrupo.id == hoverElement, 'text-danger':cursoGrupo.isLab}"
+          [ngClass]="{'selectedItem' : cursoGrupo.seleccionado,'overSelected' : cursoGrupo.id == hoverElement, 'text-danger':cursoGrupo.isLab}"
           (mouseover)="hoverElement = cursoGrupo.id" (mouseout)="hoverElement = ''" (click)="save(cursoGrupo)"
           *ngFor="let cursoGrupo of column">{{cursoGrupo.abreviatura}}</span>
       </td>
     </tr>
 
   </tbody>
-</table>
-
+</table> 
+</div>
 <ul class="list-unstyled">
-  <li *ngFor="let curso of horarioItem.cursos">{{curso.abreviatura}}={{curso.cursoNombre}}.
-    (T){{printGrupos(curso.grupos)}}. (L) {{printGrupos(curso.grupos2)}}
+  <li *ngFor="let curso of horarioItem.cursos">{{curso.abreviatura}}={{curso.nombre}}.
+    (T){{printGrupos(curso.gruposTeoria)}}. (L) {{printGrupos(curso.gruposLaboratorio)}}
   </li>
 
 </ul>
