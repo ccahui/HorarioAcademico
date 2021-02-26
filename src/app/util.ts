@@ -33,9 +33,13 @@ export class Util {
           selected: false,
           abreviatura: curso.substr(0, 3),
           grupos: [
-            { grupo: 'A',  horas: [this.randomHoraDia(), this.randomHoraDia()], abreviatura: curso.substr(0, 3) + "-" + "A"  },
-            { grupo: 'B', horas: [this.randomHoraDia(), this.randomHoraDia()], abreviatura: curso.substr(0, 3) + "-" + "B" }
+            { grupo: 'A',  horas: [this.randomHoraDia(), this.randomHoraDia()]  },
+            { grupo: 'B', horas: [this.randomHoraDia(), this.randomHoraDia()] }
           ],
+          grupos2: [
+          { grupo: 'A',  horas: [this.randomHoraDia()]},
+          { grupo: 'B',  horas: [this.randomHoraDia()]},
+          ]
         };
       });
       return {
@@ -49,6 +53,11 @@ export class Util {
     let arrayBidimensional = this.initArray();
     anioCursos.cursos.map((curso: any) => {
       curso.grupos.map((grupoCurso: any) => {
+        grupoCurso.horas.map((grupoHora: any) => {
+          this.mapear(grupoHora, grupoCurso, arrayBidimensional);
+        });
+      });
+      curso.grupos2.map((grupoCurso: any) => {
         grupoCurso.horas.map((grupoHora: any) => {
           this.mapear(grupoHora, grupoCurso, arrayBidimensional);
         });

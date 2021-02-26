@@ -32,6 +32,11 @@ export class StateService {
              idsCursoGrupo.push(cursoGrupo.id);
            } 
         });
+        curso.grupos2.forEach((cursoGrupo: any) => {
+          if(cursoGrupo.estado){
+            idsCursoGrupo.push(cursoGrupo.id);
+          } 
+       });
       });
     })
     localStorage.setItem('miHorario',JSON.stringify(idsCursoGrupo));
@@ -52,6 +57,16 @@ export class StateService {
           curso.grupos.forEach((cursoGrupo: any) => {
             cursoGrupo.parent = curso;
             cursoGrupo.id = curso.cursoNombre + "-" + cursoGrupo.grupo;
+            cursoGrupo.abreviatura = curso.abreviatura+ "-" + cursoGrupo.grupo;
+            if(miHorario.some((item:any) => item == cursoGrupo.id)){
+              cursoGrupo.estado = true;
+          }}
+          );
+          curso.grupos2.forEach((cursoGrupo: any) => {
+            cursoGrupo.parent = curso;
+            cursoGrupo.id = curso.cursoNombre + "-(L)" + cursoGrupo.grupo;
+            cursoGrupo.abreviatura = curso.abreviatura+ "-" + cursoGrupo.grupo+"(L)";
+            cursoGrupo.isLab = true;
             if(miHorario.some((item:any) => item == cursoGrupo.id)){
               cursoGrupo.estado = true;
           }}

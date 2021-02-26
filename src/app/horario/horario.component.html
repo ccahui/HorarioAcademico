@@ -1,2 +1,4 @@
+<div class="mb-4" *ngFor="let item of horarios$ | async" >
+    <app-horario-item [horarioItem]="item" ></app-horario-item>
+</div>
 
-<app-horario-item *ngFor="let item of horarios$ | async" [horarioItem]="item"></app-horario-item>

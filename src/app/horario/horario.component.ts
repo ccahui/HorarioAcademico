@@ -15,6 +15,7 @@ export class HorarioComponent implements OnInit {
 
   ngOnInit() {
     this.horarios$ = this.service.dataFiltrada$;
+    console.log(this.service.horarios);
   }
   click(){
     this.service.saveLocalStorage();

@@ -24,7 +24,11 @@ export class HorarioItemComponent implements OnInit {
   } 
   
   save(cursoGrupo:any){
-    cursoGrupo.parent.grupos.forEach((element : any)=> {
+    
+    console.log(cursoGrupo.parent);
+    let cursoGrupos = cursoGrupo.isLab ? cursoGrupo.parent.grupos2 : cursoGrupo.parent.grupos;
+    
+    cursoGrupos.forEach((element : any)=> {
       if(element == cursoGrupo){
         cursoGrupo.estado = !cursoGrupo.estado;
       }  else {
@@ -33,6 +37,20 @@ export class HorarioItemComponent implements OnInit {
     });
   }
 
+  printGrupos(cursoGrupos:any){
+    let cadena = "";
+    if(cursoGrupos.length > 0){
+      cadena += "(";
+      for(let i = 0; i < cursoGrupos.length; i++){
+        cadena+=cursoGrupos[i].grupo;
+        if(i < cursoGrupos.length-1){
+          cadena+=", ";
+        }
+      }
+      cadena+= ")"
+    }
+    return cadena;
+  }
 
   
 
