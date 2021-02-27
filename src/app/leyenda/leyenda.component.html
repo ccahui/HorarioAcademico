@@ -1,0 +1,6 @@
+<ul class="list-unstyled">
+    <li *ngFor="let curso of cursos">{{curso.abreviatura}}={{curso.nombre}}.
+        (T){{printGrupos(curso.gruposTeoria)}}. (L) {{printGrupos(curso.gruposLaboratorio)}}
+    </li>
+
+</ul>

@@ -7,12 +7,14 @@
       </button>
     </p>
     <div class="collapse" id="collapseExample">
-      <div class="row container">
-        <div class="card card-body col-md-12 col-xl-10 mb-4">
+      <div class="container-md">
+        <div class="row mb-4">
+        <div class="card card-body">
           <div  class="mb-3" *ngFor="let anio of horarios">
             <app-filtro-item [object]="anio"></app-filtro-item>
           </div>
         </div>
+      </div>
       </div>
     </div>
 

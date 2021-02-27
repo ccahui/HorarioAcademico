@@ -10,3 +10,25 @@
 .overSelected {
     background-color:chartreuse;
 }
+
+table {
+    font-size: 15px;
+}
+.table-hora {
+    font-size: 13px;
+}
+.span-curso-grupo {
+    padding: 2px 2px;
+}
+
+@media screen and (max-width: 640px) {
+    table {
+        font-size: 12px;
+    }
+    .table-hora {
+        font-size: 10px;
+    }
+    .span-curso-grupo {
+        padding: 1px 1px;
+    }
+}
