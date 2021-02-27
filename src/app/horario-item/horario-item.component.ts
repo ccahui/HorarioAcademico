@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { AnioHorario, Grupo, Hora } from '../models/modelos';
 import { StateService } from '../state.service';
 
@@ -15,17 +16,23 @@ export class HorarioItemComponent implements OnInit {
 
   horasAcademicas: Hora[] = [];
   diasAcademicos: string[] = [];
-  constructor(public service: StateService) {
+
+  isMobileOrTablet = false;
+  constructor(public service: StateService, private deviceService: DeviceDetectorService) {
   }
 
   ngOnInit(): void {
     this.horasAcademicas = this.service.horasAcademicas;
     this.diasAcademicos = this.service.diasAcademicos;
     this.tableroHorario = this.service.tablero(this.horarioItem);
+    this.isMobileOrTablet = this.deviceService.isMobile() || this.deviceService.isTablet();
   }
 
   save(cursoGrupo: Grupo) {
-
+    if(this.isMobileOrTablet){
+      this.hoverElement = '';
+    }
+    
     let refParent = cursoGrupo.refParent;
     let cursoGrupos = cursoGrupo.isLab ? refParent.gruposLaboratorio : refParent.gruposTeoria;
 
@@ -38,21 +45,7 @@ export class HorarioItemComponent implements OnInit {
     });
   }
 
-  printGrupos(cursoGrupos: Grupo[]) {
-    let cadena = "";
-    if (cursoGrupos.length > 0) {
-      cadena += "(";
-      for (let i = 0; i < cursoGrupos.length; i++) {
-        cadena += cursoGrupos[i].nombre;
-        if (i < cursoGrupos.length - 1) {
-          cadena += ", ";
-        }
-      }
-      cadena += ")"
-    }
-    return cadena;
-  }
-
+ 
 
 
 

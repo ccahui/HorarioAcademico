@@ -1,0 +1,9 @@
+ul {
+    font-size: 15px;
+}
+
+@media screen and (max-width: 640px) {
+    ul {
+        font-size: 12px;
+    }
+}
