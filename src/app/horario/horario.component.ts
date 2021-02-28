@@ -5,6 +5,7 @@ import { Util } from '../util';
 import { AnioHorario, Curso } from '../models/modelos';
 import { BehaviorSubject } from 'rxjs';
 
+
 @Component({
   selector: 'app-horario',
   templateUrl: './horario.component.html',
@@ -17,11 +18,9 @@ export class HorarioComponent implements OnInit {
 
   ngOnInit() {
     this.horarios$ = this.service.dataFiltrada$;
-    console.log(this.service.horarios);
   }
-  click(){
-   // this
-
+  descargar(){
+    this.service.descargar(); 
   }
 
   @HostListener("window:beforeunload")

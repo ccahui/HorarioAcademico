@@ -2,62 +2,62 @@
   {
     "nombre": "Primer Año",
     "cursos": [
-      "Razonamiento Logico Matematico",
-      "MATEMATICA BASICA",
-      "ESTRUCTURAS DISCRETAS 1",
-      "INTRODUCCION A LA COMPUTACION",
-      "FUNDAMENTOS DE LA PROGRAMACION 1",
-      "METODOLOGIA DEL TRABAJO INTELECTUAL UNIVERSITARIO",
-      "RELACIONES HUMANAS EN EMPRESAS DE DESARROLLO DE SOFTWARE Y BASE TECNOL"
+      "Razonamiento Lógico Matemático",
+      "Matemática Básica",
+      "Estructuras Discretas 1",
+      "Introducción a la Computación",
+      "Fundamentos de la Programación 1",
+      "Metodología del Trabajo Intelectual Universitario",
+      "Relaciones Humanas en Empresas de Desarrollo de Software y Base Tecnol"
     ]
   },
   {
     "nombre": "Segundo Año",
     "cursos": [
-      "TALLERES DE PSICOLOGIA",
-      "CALCULO EN VARIAS VARIABLES MS",
-      "TALLER DE LIDERAZGO Y COLABORACION SI",
-      "INNOVACION Y CREATIVIDAD SI",
-      "PROGRAMACION WEB 2",
-      "REDACCION DE ARTICULOS E INFORMES DE INVESTIGACION",
-      "ESTRUCTURA DE DATOS Y ALGORITMOS",
-      "CIUDADANIA E INTERCULTURALIDAD"
+      "Talleres de Psicología",
+      "Cálculo en Varias Variables",
+      "Taller de Liderazgo y Colaboración",
+      "Innovación y Creatividad",
+      "Programación Web 2",
+      "Redacción de Articulos e Informes de Investigación",
+      "Estructura de Datos y Algoritmos",
+      "Ciudadanía e Interculturalidad"
     ]
   },
   {
     "nombre": "Tercer Año",
     "cursos": [
-      "BASE DE DATOS",
-      "PROGRAMACION DE SISTEMAS",
-      "INGENIERIA Y PROCESOS DE SOFTWARE",
-      "TEORIA DE LA COMPUTACION",
-      "ORGANIZACION Y METODOS ",
-      "INVESTIGACION DE OPERACIONES"
+      "Base de Datos",
+      "Programación de Sistemas",
+      "Ingeniería y Procesos de Software",
+      "Teoría de la Computación",
+      "Organización y Metodos ",
+      "Investigación de Operaciones"
     ]
   },
   {
     "nombre": "Cuarto Año",
     "cursos": [
-      "FISICA COMPUTACIONAL",
-      "TECNOLOGIAS DE INFORMACION",
-      "INTELIGENCIA ARTIFICIAL",
-      "INGENIERIA DE REQUERIMIENTOS",
-      "SISTEMAS DISTRIBUIDOS",
-      "PRUEBAS DE SOFTWARE",
-      "INGLES"
+      "Física Computacional",
+      "Tecnologías de Información",
+      "Inteligencia Artificial",
+      "Ingeniería de Requerimientos",
+      "Sistemas Distribuidos",
+      "Pruebas de Software",
+      "Ingles"
     ]
   },
   {
     "nombre": "Quinto Año",
     "cursos": [
-      "PROYECTO DE INGENIERIA DE SOFTWARE 1",
-      "SEMINARIO DE TESIS 1",
-      "GESTION DE EMPRENDIMIENTO DE SOFTWARE",
-      "SEGURIDAD INFORMATICA MANTENIMIENTO, CONFIGURACION Y EVOLUCION DESOFTWARE",
-      "ETICA GENERAL Y PROFESIONAL",
-      "TOPICOS AVANZADOS EN BASES DE DATOS (E)",
-      "COMPUTACION GRAFICA, VISION COMPUTACIONAL Y MULTIMEDIA (E)",
-      "DESARROLLO AVANZADO EN NUEVAS PLATAFORMAS (E)"
+      "Proyecto de Ingeniería de Software 1",
+      "Seminario de Tesis 1",
+      "Gestión de Emprendimiento de Software",
+      "Seguridad Informática Mantenimiento, Configuración y Evolución de Software",
+      "Etica General y Profesional",
+      "Tópicos Avanzados en Bases de Datos (E)",
+      "Computación Gráfica, Visión Computacional y Multimedia (E)",
+      "Desarrollo Avanzado en Nuevas Plataformas (E)"
     ]
   }
 ]

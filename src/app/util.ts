@@ -1,7 +1,7 @@
 
 import { ThrowStmt } from '@angular/compiler';
 import * as moment from 'moment';
-import * as DATA  from './data.json';
+import * as DATA from './data.json';
 
 import { Injectable } from '@angular/core';
 import { AnioHorario, Curso, Grupo, Hora, HoraDia } from './models/modelos';
@@ -34,7 +34,7 @@ export class Util {
       let cursos: InputCurso[] = anioCursos.cursos.map((curso: string) => {
         return {
           nombre: curso,
-          abreviatura: curso.substr(0, 3),
+          abreviatura: curso.substr(0, 3).toUpperCase(),
           gruposTeoria: [
             { nombre: 'A', horas: [this.randomHoraDia(), this.randomHoraDia()] },
             { nombre: 'B', horas: [this.randomHoraDia(), this.randomHoraDia()] }
@@ -55,7 +55,7 @@ export class Util {
 
   tableroHorario(anioCursos: AnioHorario) {
     let arrayBidimensional = this.initArray();
-    anioCursos.cursos.map(curso=> {
+    anioCursos.cursos.map(curso => {
       curso.gruposTeoria.map(grupoCurso => {
         grupoCurso.horas.map(grupoHora => {
           this.mapear(grupoHora, grupoCurso, arrayBidimensional);
@@ -67,6 +67,66 @@ export class Util {
         });
       })
     });
+    return arrayBidimensional;
+  }
+  miLeyenda(aniosHorario: AnioHorario[]){
+
+    let leyenda : {abreviatura: string, nombre: string, teoria: string[], laboratorio:string[]}[] = [];
+    aniosHorario.forEach(anioCursos =>
+      anioCursos.cursos.forEach(curso => {
+       curso.gruposTeoria.forEach(grupoCurso => {
+          if (grupoCurso.seleccionado) {
+            let element = leyenda.find(item=> item.nombre == curso.nombre);
+            if(element == null){
+                element = {
+                  abreviatura: curso.abreviatura,
+                  nombre: curso.nombre,
+                  teoria: [],
+                  laboratorio: [], 
+                }
+                leyenda.push(element)
+            }
+            element.teoria.push(grupoCurso.nombre);
+            
+          }
+        });
+        curso.gruposLaboratorio.map(grupoCurso => {
+          if (grupoCurso.seleccionado) {
+            let element = leyenda.find(item=> item.nombre == curso.nombre);
+            if(element == null){
+                element = {
+                  abreviatura: curso.abreviatura,
+                  nombre: curso.nombre,
+                  teoria: [],
+                  laboratorio: [], 
+                }
+                leyenda.push(element)
+            }
+            element.laboratorio.push(grupoCurso.nombre);
+          }
+        })
+      }));
+    return leyenda;
+  }
+  miHorarioTablero(aniosHorario: AnioHorario[]) {
+    let arrayBidimensional = this.initArray();
+    aniosHorario.forEach(anioCursos =>
+      anioCursos.cursos.forEach(curso => {
+        curso.gruposTeoria.forEach(grupoCurso => {
+          if (grupoCurso.seleccionado) {
+            grupoCurso.horas.map(grupoHora => {
+              this.mapear(grupoHora, grupoCurso, arrayBidimensional);
+            });
+          }
+        });
+        curso.gruposLaboratorio.map(grupoCurso => {
+          if (grupoCurso.seleccionado) {
+            grupoCurso.horas.map(grupoHora => {
+              this.mapear(grupoHora, grupoCurso, arrayBidimensional);
+            });
+          }
+        })
+      }));
     return arrayBidimensional;
   }
 
@@ -135,7 +195,7 @@ export class Util {
     let hora = (moment(inicio, format));
     hora.add('100', 'minutes');
     let fin = hora.format(format);
-    
+
     let randomHoraDia: HoraDia = {
       inicio: inicio, fin: fin, dia: dia
     }
@@ -192,7 +252,7 @@ export class Util {
     return arrayI;
   }
 
-  private between(inicio:string, fin: string, hora: string) {
+  private between(inicio: string, fin: string, hora: string) {
     let format = 'HH:mm a';
     let time = moment(hora, format);
     let beforeTime = moment(inicio, format);
@@ -202,7 +262,7 @@ export class Util {
     return rpta;
   }
 
-  public toAnioHorario(data: InputAnioHorario[]) : AnioHorario[] {
+  public toAnioHorario(data: InputAnioHorario[]): AnioHorario[] {
     let anioHorarios: AnioHorario[] = data.map(inputAnioCurso => {
       let cursos: Curso[] = this.toCurso(inputAnioCurso.cursos);
       return {
@@ -221,10 +281,14 @@ export class Util {
         gruposTeoria: [],
         gruposLaboratorio: [],
       }
-      
-      let gruposTeoria: Grupo[] = this.toGrupoTeoria(inputCurso.gruposTeoria, curso);
-      let gruposLaboratorio: Grupo[] = this.toGrupoLaboratorio(inputCurso.gruposLaboratorio, curso);
 
+      let gruposTeoria: Grupo[] = this.toGrupoTeoria(inputCurso.gruposTeoria, curso);
+      let gruposLaboratorio:Grupo[] = [];
+      if(inputCurso.gruposLaboratorio != null){
+        gruposLaboratorio = this.toGrupoLaboratorio(inputCurso.gruposLaboratorio, curso);
+        
+      }
+      
       curso.gruposTeoria = gruposTeoria;
       curso.gruposLaboratorio = gruposLaboratorio;
 

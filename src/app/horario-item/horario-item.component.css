@@ -23,7 +23,7 @@ table {
 
 @media screen and (max-width: 640px) {
     table {
-        font-size: 12px;
+        font-size: 13px;
     }
     .table-hora {
         font-size: 10px;
