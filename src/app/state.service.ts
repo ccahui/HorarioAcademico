@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Util } from './util';
 import { AnioHorario, Curso, Grupo, Hora } from './models/modelos';
+import { PDF } from './pdf';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class StateService {
   horasAcademicas: Hora[] = []
   diasAcademicos: string[] = [];
 
-  constructor(private util: Util) {
+  constructor(private util: Util, private pdf:PDF) {
     this.horasAcademicas = this.util.getHorasAcademicas();
     this.diasAcademicos = this.util.getDiasAcademicos();
 
@@ -22,9 +23,11 @@ export class StateService {
 
     this.dataFiltrada$ = new BehaviorSubject(this.horarios);
   }
-
   saveLocalStorage() {
-   let idsCursoGrupo: string[] = []
+
+
+
+    let idsCursoGrupo: string[] = []
     this.horarios.forEach((anioCursos) => {
       anioCursos.cursos.forEach((curso) => {
         curso.gruposTeoria.forEach((cursoGrupo) => {
@@ -98,5 +101,8 @@ export class StateService {
     return this.util.tableroHorario(anioCursos);
   }
 
+  descargar(){
+    this.pdf.generarPdf(this.horarios);
+  }
 }
 

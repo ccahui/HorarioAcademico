@@ -9,7 +9,7 @@ export interface InputCurso{
     nombre:string;
     abreviatura: string;
     gruposTeoria: InputGrupo[];
-    gruposLaboratorio: InputGrupo[];
+    gruposLaboratorio?: InputGrupo[];
 }
 
 export interface InputGrupo{
