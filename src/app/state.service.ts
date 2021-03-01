@@ -15,7 +15,7 @@ export class StateService {
   horasAcademicas: Hora[] = []
   diasAcademicos: string[] = [];
 
-  constructor(private util: Util, private pdf:PDF) {
+  constructor(private util: Util, private pdfService:PDF) {
     this.horasAcademicas = this.util.getHorasAcademicas();
     this.diasAcademicos = this.util.getDiasAcademicos();
 
@@ -97,12 +97,18 @@ export class StateService {
     }
     this.dataFiltrada$.next(dataFiltrada);
   }
+
   tablero(anioCursos: AnioHorario) {
     return this.util.tableroHorario(anioCursos);
   }
 
-  descargar(){
-    this.pdf.generarPdf(this.horarios);
+  descargarPdf(){
+    let pdf = this.pdfService.generarPdf(this.horarios);
+    pdf.download();
+  }
+  abrirPdfEnNuevaVentana(){
+    let pdf = this.pdfService.generarPdf(this.horarios);
+    pdf.open();
   }
 }
 

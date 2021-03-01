@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import { Util } from '../util';
 import { AnioHorario, Curso } from '../models/modelos';
 import { BehaviorSubject } from 'rxjs';
+import { DeteccionDispositivo } from '../deteccionDispositivo';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class HorarioComponent implements OnInit {
     this.horarios$ = this.service.dataFiltrada$;
   }
   descargar(){
-    this.service.descargar(); 
+    this.service.abrirPdfEnNuevaVentana();
+
   }
 
   @HostListener("window:beforeunload")

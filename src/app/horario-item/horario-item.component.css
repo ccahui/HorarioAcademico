@@ -16,6 +16,8 @@ table {
 }
 .table-hora {
     font-size: 13px;
+    width: 1px; /*Ajustar texto*/
+    white-space: nowrap;
 }
 .span-curso-grupo {
     padding: 2px 2px;

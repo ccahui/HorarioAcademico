@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { AnioHorario, Curso, Grupo, Hora, HoraDia } from './models/modelos';
 import { InputAnioHorario, InputCurso, InputGrupo } from './models/inputModels';
 @Injectable({ providedIn: 'root' })
+
 export class Util {
   private horas: Hora[];
   private diasAbreviados: string[]
