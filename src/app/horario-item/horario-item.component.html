@@ -10,10 +10,10 @@
   <tbody>
 
     <tr class="text-uppercase" *ngFor="let row of tableroHorario; let i = index">
-      <td class="text-lowercase table-hora">{{this.horasAcademicas[i].inicio}} -
+      <td class="text-lowercase table-hora" style=" ">{{this.horasAcademicas[i].inicio}} -
         {{this.horasAcademicas[i].fin}}</td>
 
-      <td style="width: 17.5%" *ngFor="let column of row; let j = index">
+      <td style="width: 17.5%;" *ngFor="let column of row; let j = index" >
         <span class="mr-1 span-curso-grupo"
           [ngClass]="{'selectedItem' : cursoGrupo.seleccionado,'overSelected' : cursoGrupo.id == hoverElement, 'text-danger':cursoGrupo.isLab}"
           (mouseover)="hoverElement = cursoGrupo.id" (mouseout)="hoverElement = ''" (click)="save(cursoGrupo)"
