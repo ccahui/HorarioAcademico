@@ -1,6 +1,11 @@
-# AngularTourHeroes
+# Horario Académico
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.2.
+
+## Librerias
+
+PdfMake `https://pdfmake.github.io/docs/0.1/`
+ngx-device-detector `https://koderlabs.github.io/ngx-device-detector/`
 
 ## Development server
 
