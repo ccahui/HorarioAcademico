@@ -33,7 +33,7 @@ export class PDF {
         {
           style: 'table',
           table: {
-            widths: [83, '*', '*', '*', '*', '*'],
+            widths: [55, '*', '*', '*', '*', '*'],
             body: this.body(horarios),
           },
           alignment: 'center',

@@ -11,6 +11,9 @@ import { FiltroItemComponent } from './filtro-item/filtro-item.component';
 import { HorarioComponent } from './horario/horario.component';
 import { HorarioItemComponent } from './horario-item/horario-item.component';
 import { LeyendaComponent } from './leyenda/leyenda.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import { LeyendaComponent } from './leyenda/leyenda.component';
     FiltroItemComponent,
     HorarioComponent,
     HorarioItemComponent,
-    LeyendaComponent
+    LeyendaComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 <div class="container-md">
-      <h3>Horario Académico</h3>
-      <app-filtro></app-filtro>
+     
+      <app-header [anioSemestre]="anioSemestre" [urlHorarios]="urlHorariosEpis"></app-header>
       <app-horario></app-horario>
+      <app-footer [fecha]="ultimaFechaDeActualizacion"></app-footer>
 </div>

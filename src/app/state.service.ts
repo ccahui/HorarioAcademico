@@ -3,7 +3,8 @@ import { BehaviorSubject } from 'rxjs';
 import { Util } from './util';
 import { AnioHorario, Curso, Grupo, Hora } from './models/modelos';
 import { PDF } from './pdf';
-
+import { FakerHorario } from './faker';
+import * as dataHorarios from './horarios-2020-A.json';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class StateService {
   horasAcademicas: Hora[] = []
   diasAcademicos: string[] = [];
 
-  constructor(private util: Util, private pdfService:PDF) {
+  constructor(private util: Util, private pdfService:PDF, private faker: FakerHorario) {
     this.horasAcademicas = this.util.getHorasAcademicas();
     this.diasAcademicos = this.util.getDiasAcademicos();
 
@@ -47,7 +48,7 @@ export class StateService {
   }
 
   loadHorarios() {
-    let data = this.util.fakerHorariosDataFormat();
+    let data = (dataHorarios as any).default;
     this.horarios = this.util.toAnioHorario(data);
     this.sincronizarMiHorarioConHorarioAlmacenado();
    
@@ -98,8 +99,8 @@ export class StateService {
     this.dataFiltrada$.next(dataFiltrada);
   }
 
-  tablero(anioCursos: AnioHorario) {
-    return this.util.tableroHorario(anioCursos);
+  tablero(cursos: Curso[]) {
+    return this.util.tableroHorario(cursos);
   }
 
   descargarPdf(){
