@@ -1,0 +1,294 @@
+[
+  {
+    "nombre": "Primer Año",
+    "cursos": [
+      {
+        "nombre": "Matemática Básica",
+        "abreviatura": "MB",
+        "gruposTeoria": [
+          "A;L-7:00-8:40;MI-7:00-8:40;J-7:00-8:40",
+          "B;L-14:00-16:40;J-15:50-18:30",
+          "C;M-7:00-9:40;V-7:00-9:40"
+        ]
+      },
+      {
+        "nombre": "Metodología del Trabajo Intelectual Universitario",
+        "abreviatura": "MTIU",
+        "gruposTeoria": [
+          "A;L-8:50-10:30;J-10:40-12:20",
+          "B;L-18:30-20:10;MI-18:30-20:10"
+        ]
+      },
+      {
+        "nombre": "Fundamentos de la Programación 1",
+        "abreviatura": "FP1",
+        "gruposTeoria": [
+          "A;L-10:40-12:20;J-8:50-10:30",
+          "B;M-15:50-17:30;V-15:50-17:30",
+          "C;M-14:00-15:40;J-18:30-20:10"
+        ],
+        "gruposLaboratorio": [
+          "A;L-10:40-12:20;J-8:50-10:30",
+          "B;M-15:50-17:30;V-15:50-17:30",
+          "C;M-14:00-15:40;J-18:30-20:10"
+        ]
+      },
+      {
+        "nombre": "Estructuras Discretas 1",
+        "abreviatura": "ED1",
+        "gruposTeoria": [
+          "A;L-12:20-14:00;J-12:20-14:00",
+          "B;J-14:00-15:40;V-14:00-15:40"
+        ]
+      },
+      {
+        "nombre": "Razonamiento Lógico Matemático",
+        "abreviatura": "RLM",
+        "gruposTeoria": [
+          "A;M-9:40-11:30;MI-8:50-10:30",
+          "B;M-11:30-13:10;V-18:30-20:10",
+          "C;L-16:40-18:30;MI-16:40-18:30"
+        ]
+      },
+      {
+        "nombre": "Introducción a la Computación",
+        "abreviatura": "IC",
+        "gruposTeoria": [
+          "A;V-10:40-13:10",
+          "B;M-17:40-20:10"
+        ]
+      },
+      {
+        "nombre": "Relaciones Humanas en Empresas de Desarrollo de Software y Base Tecnológica",
+        "abreviatura": "RHEDSBT",
+        "gruposTeoria": [
+          "A;MI-10:40-13:10",
+          "B;MI-14:00-16:40"
+        ]
+      }
+    ]
+  },
+  {
+    "nombre": "Segundo Año",
+    "cursos": [
+      {
+        "nombre": "Redacción de Articulos e Informes de Investigación",
+        "abreviatura": "RAI",
+        "gruposTeoria": [
+          "A;L-7:50-9:40",
+          "B;L-16:40-18:30",
+          "C;L-9:40-11:30"
+        ]
+      },
+      {
+        "nombre": "Cálculo en Varias Variables",
+        "abreviatura": "CVV",
+        "gruposTeoria": [
+          "A;M-8:50-11:30;J-10:40-12:20;V-7:00-8:40",
+          "B;L-18:30-20:10;J-16:40-19:20;V-18:30-20:10",
+          "C;L-11:30-14:00;M-11:30-13:10;J-12:20-14:00"
+        ]
+      },
+      {
+        "nombre": "Ciudadanía e Interculturalidad",
+        "abreviatura": "CI",
+        "gruposTeoria": [
+          "A;L-14:00-16:40",
+          "B;V-15:50-18:30"
+        ]
+      },
+      {
+        "nombre": "Estructura de Datos y Algoritmos",
+        "abreviatura": "EDA",
+        "gruposTeoria": [
+          "A;M-7:00-8:40;J-7:00-8:40",
+          "B;M-14:00-15:40;J-14:00-15:40"
+        ],
+        "gruposLaboratorio": [
+          "A;M-7:00-8:40",
+          "B;M-14:00-15:40"
+        ]
+      },
+      {
+        "nombre": "Taller de Liderazgo y Colaboración",
+        "abreviatura": "TLC",
+        "gruposTeoria": [
+          "A;MI-8:50-10:30",
+          "B;M-16:40-18:30"
+        ]
+      },
+      {
+        "nombre": "Innovación y Creatividad",
+        "abreviatura": "IC",
+        "gruposTeoria": [
+          "A;MI-10:40-12:20;J-8:40-10:30",
+          "B;M-18:30-20:10;MI-17:40-19:20"
+        ]
+      },
+      {
+        "nombre": "Talleres de Psicología",
+        "abreviatura": "TPS",
+        "gruposTeoria": [
+          "A;MI-7:00-8:40",
+          "B;MI-14:00-15:40"
+        ]
+      },
+      {
+        "nombre": "Programación Web 2",
+        "abreviatura": "PW2",
+        "gruposTeoria": [
+          "A;V-8:50-10:30",
+          "B;V-14:00-15:40"
+        ],
+        "gruposLaboratorio": [
+          "A;V-8:50-10:30;L-8:50-10:30",
+          "B;V-14:00-15:40;J-8:50-10:30"
+        ]
+      }
+    ]
+  },
+  {
+    "nombre": "Tercer Año",
+    "cursos": [
+      {
+        "nombre": "Base de Datos",
+        "abreviatura": "BD",
+        "gruposTeoria": [
+          "A;MI-8:50-10:30;J-8:50-10:30",
+          "B;M-15:50-17:30;J-15:50-17:30"
+        ],
+        "gruposLaboratorio": [
+          "A;MI-8:50-10:30",
+          "B;M-15:50-17:30"
+        ]
+      },
+      {
+        "nombre": "Programación de Sistemas",
+        "abreviatura": "PS",
+        "gruposTeoria": [
+          "A;MI-7:00-8:40",
+          "B;MI-15:50-17:30"
+        ],"gruposLaboratorio": [
+          "A;MI-7:00-8:40;V-7:00-8:40",
+          "B;MI-15:50-17:30;M-7:00-8:40"
+        ]
+      },
+      {
+        "nombre": "Ingeniería y Procesos de Software",
+        "abreviatura": "IPS",
+        "gruposTeoria": [
+          "A;L-7:00-8:40;V-7:00-9:40",
+          "B;MI-14:00-15:40;J-17:40-20:10"
+        ]
+      },
+      {
+        "nombre": "Teoría de la Computación",
+        "abreviatura": "TC",
+        "gruposTeoria": [
+          "A;M-7:00-9:40",
+          "B;MI-17:40-20:10"
+        ]
+      },
+      {
+        "nombre": "Organización y Metodos",
+        "abreviatura": "OM",
+        "gruposTeoria": [
+          "A;J-10:40-13:10",
+          "B;L-15:50-18:30"
+        ]
+      },
+      {
+        "nombre": "Investigación de Operaciones",
+        "abreviatura": "IO",
+        "gruposTeoria": [
+          "A;L-10:40-12:20;V-11:30-13:10",
+          "B;L-14:00-15:40;V-15:50-17:30"
+        ],
+        "gruposLaboratorio": [
+          "A;L-10:40-12:20",
+          "B;L-14:00-15:40"
+        ]
+        
+      }
+    ]
+  },
+  {
+    "nombre": "Cuarto Año",
+    "cursos": [
+      {
+        "nombre": "Sistemas Distribuidos",
+        "abreviatura": "SD",
+        "gruposTeoria": [
+          "A;L-7:00-8:40;MI-7:00-8:40",
+          "B;M-14:00-15:40;J-15:50-17:30"
+        ],
+        "gruposLaboratorio": [
+          "A;L-7:00-8:40",
+          "B;J-15:50-17:30"
+        ]
+      },
+      {
+        "nombre": "Ingeniería de Requerimientos",
+        "abreviatura": "IR",
+        "gruposTeoria": [
+          "A;L-8:50-10:30;MI-8:50-10:30",
+          "B;J-14:00-15:40;V-14:00-15:40"
+        ],
+        "gruposLaboratorio": [
+          "A;L-7:00-8:40",
+          "B;M-14:00-15:40"
+        ]
+      },
+      {
+        "nombre": "Pruebas de Software",
+        "abreviatura": "PS",
+        "gruposTeoria": [
+          "A;L-10:40-12:20",
+          "B;M-15:50-17:30"
+        ]
+      },
+      {
+        "nombre": "Tecnologías de Información",
+        "abreviatura": "TI",
+        "gruposTeoria": [
+          "A;M-7:00-8:40;J-7:00-8:40",
+          "B;L-14:00-15:40;V-15:50-17:30"
+        ],
+        "gruposLaboratorio": [
+          "A;J-7:00-8:40",
+          "B;MI-14:00-15:40"
+        ]
+      },
+      {
+        "nombre": "Inteligencia Artificial",
+        "abreviatura": "IA",
+        "gruposTeoria": [
+          "A;M-8:50-10:30;J-8:50-11:30",
+          "B;L-15:50-18:30;MI-15:50-17:30",
+          "C;M-10:40-13:10;V-8:50-10:30"
+        ]
+      },
+      {
+        "nombre": "Ingles",
+        "abreviatura": "Ingles",
+        "gruposTeoria": [
+          "A;J-11:30-14:00",
+          "B;M-17:40-20:10"
+        ]
+      },
+      {
+        "nombre": "Física Computacional",
+        "abreviatura": "FC",
+        "gruposTeoria": [
+          "A;V-7:00-8:40",
+          "B;MI-14:00-15:40"
+        ],
+        "gruposLaboratorio": [
+          "A;V-7:00-8:40",
+          "B;J-14:00-15:40"
+        ]
+      }
+
+    ]
+  }
+]

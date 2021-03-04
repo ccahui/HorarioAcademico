@@ -3,8 +3,10 @@ import { StateService } from '../state.service';
 import * as moment from 'moment';
 import { Util } from '../util';
 import { AnioHorario, Curso } from '../models/modelos';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { DeteccionDispositivo } from '../deteccionDispositivo';
+import { ThrowStmt } from '@angular/compiler';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -12,17 +14,73 @@ import { DeteccionDispositivo } from '../deteccionDispositivo';
   templateUrl: './horario.component.html',
   styleUrls: ['./horario.component.css']
 })
-export class HorarioComponent implements OnInit {
+export class HorarioComponent implements OnInit, OnDestroy {
+   readonly LIMITE = 9;
+
+  horarios!: AnioHorario[];
+  subscription!:Subscription;
   
-  horarios$!: BehaviorSubject<AnioHorario[]>;
+  sePuedeVisualizar= false;
+  
+  
   constructor(public service: StateService) { }
 
   ngOnInit() {
-    this.horarios$ = this.service.dataFiltrada$;
+    this.subscription = this.service.dataFiltrada$.subscribe(dataFiltrada=>{
+      this.horarios = dataFiltrada;
+      this.sePuedeVisualizarEnUnUnicaTabla();
+    });
+  }
+
+  sePuedeVisualizarEnUnUnicaTabla(){
+    if(this.seAplicoAlgunFiltroDeCursos() && this.seSeleccionoCursosDeMasDeUnAnio()){
+      if(this.lengthCursosSeleccionados() <= this.LIMITE){
+        this.sePuedeVisualizar = true;
+      } else {
+        this.sePuedeVisualizar = false;
+      }
+    } else {
+      this.sePuedeVisualizar = false;
+    } 
+    
+  }
+  cursosEnUnaUnicaTabla(){
+    console.log("LLmando");
+    let cursos:Curso[] = [];
+    this.horarios.forEach(horarioAnio=>{
+      cursos.push(...horarioAnio.cursos);
+    });
+   return cursos;
+  }
+  tituloEnUnaUnicaTabla(){
+    let titulo = this.horarios[0].nombre;
+    for(let i = 1 ; i < this.horarios.length; i ++){
+      titulo+=", "+this.horarios[i].nombre;
+    }
+    return titulo;
+  }
+
+  private seAplicoAlgunFiltroDeCursos(){
+    return this.horarios != this.service.horarios;
+  }
+  private seSeleccionoCursosDeMasDeUnAnio(){
+    return this.horarios.length > 1;
+  }
+
+  private lengthCursosSeleccionados(){
+    let nCursos = 0;
+    this.horarios.forEach(horarioAnio=>{
+      nCursos+= horarioAnio.cursos.length;
+    });
+    return nCursos;
+  }
+  
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
   descargar(){
     this.service.abrirPdfEnNuevaVentana();
-
   }
 
   @HostListener("window:beforeunload")
@@ -31,8 +89,8 @@ export class HorarioComponent implements OnInit {
   }
   @HostListener("window:unload", ["$event"])
   unloadHandler(event:any) {
-    
   }
+
   
 
 

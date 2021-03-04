@@ -1,28 +1,35 @@
-<h6 class="text-uppercase">{{horarioItem.nombre}}</h6>
-  <div class="table-responsive">
- <table class="table table-bordered table-sm" style="min-width: 640px;">
-  <thead>
-    <tr>
-      <th>Hora</th>
-      <th *ngFor="let dia of diasAcademicos">{{dia}}</th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="row ">
+  <div class="col mx-auto">
+    <div class="card rounded shadow border-0">
+      <div class="card-body p-4 bg-white rounded">
+        <h6 class="text-uppercase">{{titulo}}</h6>
+        <div class="table-responsive">
+          <table class="table table-bordered table-sm table-striped" style="min-width: 640px;">
+            <thead class="text-center">
+              <tr>
+                <th>Hora</th>
+                <th *ngFor="let dia of diasAcademicos">{{dia}}</th>
+              </tr>
+            </thead>
+            <tbody>
 
-    <tr class="text-uppercase" *ngFor="let row of tableroHorario; let i = index">
-      <td class="text-lowercase table-hora" style=" ">{{this.horasAcademicas[i].inicio}} -
-        {{this.horasAcademicas[i].fin}}</td>
+              <tr  *ngFor="let row of tableroHorario; let i = index">
+                <td class="text-lowercase table-hora">{{this.horasAcademicas[i].inicio}} -
+                  {{this.horasAcademicas[i].fin}}</td>
 
-      <td style="width: 17.5%;" *ngFor="let column of row; let j = index" >
-        <span class="mr-1 span-curso-grupo"
-          [ngClass]="{'selectedItem' : cursoGrupo.seleccionado,'overSelected' : cursoGrupo.id == hoverElement, 'text-danger':cursoGrupo.isLab}"
-          (mouseover)="hoverElement = cursoGrupo.id" (mouseout)="hoverElement = ''" (click)="save(cursoGrupo)"
-          *ngFor="let cursoGrupo of column">{{cursoGrupo.abreviatura}}</span>
-      </td>
-    </tr>
+                <td style="width: 20%;" *ngFor="let column of row; let j = index">
+                  <span class="mr-1 span-curso-grupo d-inline-block"
+                    [ngClass]="{'selectedItem' : cursoGrupo.seleccionado,'overSelected' : cursoGrupo.id == hoverElement, 'text-danger':cursoGrupo.isLab}"
+                    (mouseover)="hoverElement = cursoGrupo.id" (mouseout)="hoverElement = ''" (click)="save(cursoGrupo)"
+                    *ngFor="let cursoGrupo of column">{{cursoGrupo.abreviatura}}</span>
+                </td>
+              </tr>
 
-  </tbody>
-</table> 
-</div>
-<app-leyenda [cursos]="horarioItem.cursos">
-</app-leyenda>
+            </tbody>
+          </table>
+        </div>
+        <app-leyenda [cursos]="_cursos">
+        </app-leyenda>
+      </div>
+    </div>
+  </div>

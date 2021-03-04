@@ -13,20 +13,20 @@ export class LeyendaComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  printGrupos(cursoGrupos: Grupo[]) {
+  printGrupos(cursoGrupos: Grupo[], inicial="T") {
     let cadena = "";
     if (cursoGrupos.length > 0) {
-      cadena += "(";
+
+      cadena += `(${inicial})(`;
       for (let i = 0; i < cursoGrupos.length; i++) {
         cadena += cursoGrupos[i].nombre;
         if (i < cursoGrupos.length - 1) {
           cadena += ", ";
         }
       }
-      cadena += ")"
+      cadena += "). "
     }
     return cadena;
   }
-
 
 }

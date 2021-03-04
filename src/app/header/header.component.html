@@ -1,0 +1,11 @@
+<header class="text-center text-white ">
+    <h1 class="display-4">Gestor de Horario Académico</h1>
+    <p class="lead mb-0">Escuela Profesional de Ingenieria de Sistemas. </p>
+    
+    <p class="font-italic">Horarios {{anioSemestre}} obtenidos de
+      <a [href]="urlHorario.url" class="text-white mr-2" target="_blank" *ngFor="let urlHorario of urlHorarios">
+                <u>{{urlHorario.nombre}}</u>
+          </a>
+    </p>
+    <p class="font-italic">Hacer "click" o presionar la pantalla sobre los cursos que va elegir. Organice su horario y descarguelo</p>
+</header>

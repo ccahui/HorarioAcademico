@@ -1,6 +1,22 @@
-<div class="text-center mb-btn-xs">
-   <button class="btn btn-primary btn-sm" (click)="descargar()">Descargar Horario</button>
+
+<div class="mb-4">
+   <div class="card rounded shadow border-0">
+         <div class="card-body bg-white rounded">
+               <app-filtro></app-filtro>
+               <div class="text-center mb-btn-xs">
+                  <button class="btn btn-primary btn-sm" (click)="descargar()">Descargar Mi Horario</button>
+               </div>
+         </div>
+   </div>
+
 </div>
-<div class="mb-4" *ngFor="let item of horarios$ | async">
-   <app-horario-item [horarioItem]="item"></app-horario-item>
+
+
+<div *ngIf="sePuedeVisualizar; else elseBlock">
+   <app-horario-item [titulo]="tituloEnUnaUnicaTabla()" [cursos]="cursosEnUnaUnicaTabla()"></app-horario-item>
 </div>
+<ng-template #elseBlock>
+   <div class="mb-4" *ngFor="let anio of horarios">
+      <app-horario-item [titulo]="anio.nombre" [cursos]="anio.cursos"></app-horario-item>
+   </div>
+</ng-template>

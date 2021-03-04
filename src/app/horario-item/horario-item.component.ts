@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { DeteccionDispositivo } from '../deteccionDispositivo';
-import { AnioHorario, Grupo, Hora } from '../models/modelos';
+import { AnioHorario, Curso, Grupo, Hora } from '../models/modelos';
 import { StateService } from '../state.service';
 
 @Component({
@@ -11,7 +11,12 @@ import { StateService } from '../state.service';
 })
 export class HorarioItemComponent implements OnInit {
 
-  @Input() horarioItem!: AnioHorario;
+  _cursos!: Curso[];
+  @Input() set cursos(cursos: Curso[]){
+    this._cursos = cursos;
+    this.tableroHorario = this.service.tablero(cursos);
+  };
+  @Input() titulo!: string;
   tableroHorario!: Grupo[][][];
   hoverElement = "";
 
@@ -21,11 +26,12 @@ export class HorarioItemComponent implements OnInit {
   isDesktop = false;
   constructor(public service: StateService, private deviceService: DeteccionDispositivo) {
   }
+  
 
   ngOnInit(): void {
     this.horasAcademicas = this.service.horasAcademicas;
     this.diasAcademicos = this.service.diasAcademicos;
-    this.tableroHorario = this.service.tablero(this.horarioItem);
+    this.tableroHorario = this.service.tablero(this._cursos);
     this.isDesktop = this.deviceService.isDesktop();
   }
 
