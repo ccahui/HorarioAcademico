@@ -4,7 +4,6 @@ import * as moment from 'moment';
 import * as DATA from './data.json';
 
 import { Injectable } from '@angular/core';
-import {  HoraDia } from './models/modelos';
 import { InputAnioHorario, InputCurso, } from './models/inputModels';
 import { Util } from './util';
 @Injectable({ providedIn: 'root' })

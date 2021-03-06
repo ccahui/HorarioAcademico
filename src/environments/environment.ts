@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+  anioAcademico: "2020-A",
+  ultimaActualizacion: "6 de Marzo del 2021"
 };
 
 /*

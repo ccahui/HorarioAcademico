@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Util } from './util';
-import { AnioHorario, Curso, Grupo, Hora } from './models/modelos';
+import { AnioHorario, Curso, Hora } from './models/modelos';
 import { PDF } from './pdf';
 import { FakerHorario } from './faker';
 import * as dataHorarios from './horarios-2020-A.json';

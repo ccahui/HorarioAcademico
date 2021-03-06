@@ -1,12 +1,10 @@
 
-import { ThrowStmt } from '@angular/compiler';
 import * as moment from 'moment';
-import * as DATA from './data.json';
 
 import { Injectable } from '@angular/core';
 import { AnioHorario, Curso, Grupo, Hora, HoraDia } from './models/modelos';
 import { InputAnioHorario, InputCurso } from './models/inputModels';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 @Injectable({ providedIn: 'root' })
 
 export class Util {
