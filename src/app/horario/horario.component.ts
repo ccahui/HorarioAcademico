@@ -1,12 +1,8 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { StateService } from '../state.service';
-import * as moment from 'moment';
-import { Util } from '../util';
 import { AnioHorario, Curso } from '../models/modelos';
-import { BehaviorSubject, Subscription } from 'rxjs';
-import { DeteccionDispositivo } from '../deteccionDispositivo';
-import { ThrowStmt } from '@angular/compiler';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Subscription } from 'rxjs';
+
 
 
 @Component({

@@ -60,8 +60,8 @@ export class PDF {
     let text: any = [];
     grupos.forEach(grupo => {
       if (grupo.isLab)
-        text.push({ text: grupo.abreviatura + " ", style: 'laboratorio' });
-      else { text.push(grupo.abreviatura + " ") }
+        text.push({ text: grupo.abreviatura + "  ", style: 'laboratorio' });
+      else { text.push(grupo.abreviatura + "  ") }
     });
     return text;
   }
