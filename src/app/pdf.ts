@@ -4,7 +4,7 @@ import { ThrowStmt } from '@angular/compiler';
 import * as pdfMake from 'pdfmake/build/pdfMake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { Injectable } from '@angular/core';
-import { AnioHorario, Curso, Grupo, Hora, HoraDia } from './models/modelos';
+import { AnioHorario, Grupo } from './models/modelos';
 import { Util } from './util';
 import { StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
 
