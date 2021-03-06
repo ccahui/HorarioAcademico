@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  horarioAnio: "2020-A"
 };
 
 /*

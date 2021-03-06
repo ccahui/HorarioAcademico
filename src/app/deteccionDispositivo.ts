@@ -16,4 +16,3 @@ export class DeteccionDispositivo {
     return this.device.isDesktop()
   }
 }
- 

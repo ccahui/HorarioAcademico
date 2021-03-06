@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DeviceDetectorService } from 'ngx-device-detector';
 import { DeteccionDispositivo } from '../deteccionDispositivo';
 import { AnioHorario, Curso, Grupo, Hora } from '../models/modelos';
 import { StateService } from '../state.service';

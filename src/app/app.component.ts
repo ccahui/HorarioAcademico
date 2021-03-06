@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { TreeNode } from 'primeng/api';
+import { environment } from '../environments/environment';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  anioSemestre = "2020-A";
+  anioSemestre = environment.horarioAnio;
 
   urlHorariosEpis = [{
     nombre:"Link 1",

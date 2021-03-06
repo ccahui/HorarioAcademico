@@ -16,7 +16,7 @@ export class StateService {
   horasAcademicas: Hora[] = []
   diasAcademicos: string[] = [];
 
-  constructor(private util: Util, private pdfService:PDF, private faker: FakerHorario) {
+  constructor(private util: Util, private faker: FakerHorario) {
     this.horasAcademicas = this.util.getHorasAcademicas();
     this.diasAcademicos = this.util.getDiasAcademicos();
 
@@ -104,12 +104,16 @@ export class StateService {
   }
 
   descargarPdf(){
-    let pdf = this.pdfService.generarPdf(this.horarios);
-    pdf.download();
+    //let pdf = this.pdfService.generarPdf(this.horarios);
+    //pdf.download();
+    let pdfService = new PDF(this.util);
+    pdfService.generarPdf(this.horarios);
   }
   abrirPdfEnNuevaVentana(){
-    let pdf = this.pdfService.generarPdf(this.horarios);
-    pdf.open();
+    //let pdf = this.pdfService.generarPdf(this.horarios);
+    //pdf.open();
+    let pdfService = new PDF(this.util);
+    pdfService.generarPdf(this.horarios);
   }
 }
 
